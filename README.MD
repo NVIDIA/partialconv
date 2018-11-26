@@ -8,7 +8,7 @@ This is the PyTorch implementation of partial convolution layer. It can be used 
  NVIDIA Corporation <br>
  In The European Conference on Computer Vision (**ECCV**) 2018  <br> <br>
 
- [Partial Convolution based Padding](https://arxiv.org/abs/1804.07723/) <br>
+ [Partial Convolution based Padding](https://github.com/NVIDIA/partialconv/) <br>
  [Guilin Liu](https://liuguilin1225.github.io/), [Kevin J. Shih](http://web.engr.illinois.edu/~kjshih2/), [Ting-Chun Wang](https://tcwang0509.github.io/), [Fitsum A. Reda](https://scholar.google.com/citations?user=quZ_qLYAAAAJ&hl=en), [Karan Sapra](http://cecas.clemson.edu/~ksapra/), [Zhiding Yu](https://www.andrew.cmu.edu/user/yzhiding/index.htm), Andrew Tao, [Bryan Catanzaro](http://catanzaro.name/) <br>
  NVIDIA Corporation <br>
  Technical Report (**Technical Report**) 2018  
