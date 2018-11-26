@@ -2,7 +2,7 @@
 # Partial Convolution Layer for Padding and Image Inpainting
 ### [YouTube](https://www.youtube.com/watch?v=gg0F5JjKmhA) | [Paper](https://eccv2018.org/openaccess/content_ECCV_2018/papers/Guilin_Liu_Image_Inpainting_for_ECCV_2018_paper.pdf) | [arXiv](https://arxiv.org/abs/1804.07723)
 
-This is the PyTorch implementation of partial convolution layer. It can be used for saving as a new padding scheme; it can also be used for image inpainting. <br><br>
+This is the PyTorch implementation of partial convolution layer. It can serve as a new padding scheme; it can also be used for image inpainting. <br><br>
 [Image Inpainting for Irregular Holes Using Partial Convolutions](https://arxiv.org/abs/1804.07723/) <br>
  [Guilin Liu](https://liuguilin1225.github.io/), [Fitsum A. Reda](https://scholar.google.com/citations?user=quZ_qLYAAAAJ&hl=en), [Kevin J. Shih](http://web.engr.illinois.edu/~kjshih2/), [Ting-Chun Wang](https://tcwang0509.github.io/), Andrew Tao, [Bryan Catanzaro](http://catanzaro.name/) <br>
  NVIDIA Corporation <br>
@@ -25,7 +25,7 @@ This is the PyTorch implementation of partial convolution layer. It can be used 
 <!--   <img src='imgs/compare_zero_padding_table.png' width='660'/> -->
 </p>
 
-The best top-1 accuracies for each run with 1-crop testing. \*\_zero, \*\_pd, \*\_ref and \*\_rep indicate the corresponding model with zero padding, partial convolution based padding, reflection padding and replication padding respectively. \*\_best means the best validation score for each run of the training. average represents the average accuracy of the 5 runs. Column diff represents the difference with corresponding network using zero padding. Column stdev represents the standard deviation of the accuracies from 5 runs. PT\_official represents the corresponding official accuracies published on PyTorch website: https://pytorch.org/docs/stable/torchvision/models.html
+The best top-1 accuracies for each run with 1-crop testing. \*\_zero, \*\_pd, \*\_ref and \*\_rep indicate the corresponding model with zero padding, partial convolution based padding, reflection padding and replication padding respectively. \*\_best means the best validation score for each run of the training. Average represents the average accuracy of the 5 runs. Column diff represents the difference with corresponding network using zero padding. Column stdev represents the standard deviation of the accuracies from 5 runs. PT\_official represents the corresponding official accuracies published on PyTorch website: https://pytorch.org/docs/stable/torchvision/models.html
 
 
 ## Installation
