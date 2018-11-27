@@ -16,7 +16,7 @@ This is the PyTorch implementation of partial convolution layer. It can serve as
 
 ## Comparison with Zero Padding
 <p align='center'>  
-  <img src='imgs/compare_with_zero_padding.png' width='440'/>
+  <img src='imgs/compare_with_zero_padding_bar.png' width='550'/>
 </p>
 
 ## Comparison with Zero Padding, Reflection Padding and Replication Padding for 5 runs
