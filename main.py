@@ -74,6 +74,7 @@ parser.add_argument('--start-epoch', default=0, type=int, metavar='N',
                     help='manual epoch number (useful on restarts)')
 # parser.add_argument('-b', '--batch-size', default=256, type=int,
 #                     metavar='N', help='mini-batch size (default: 256)')
+# use the batch size 256 or 192 depending on the memeory
 parser.add_argument('-b', '--batch-size', default=192, type=int,
                     metavar='N', help='mini-batch size (default: 192)')
 parser.add_argument('--lr', '--learning-rate', default=0.1, type=float,
