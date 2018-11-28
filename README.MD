@@ -39,7 +39,7 @@ Installation can be found: https://github.com/pytorch/examples/tree/master/image
 ## Usage:
 
 ```
-#typical convolution layer with zero padding:
+#typical convolution layer with zero padding
 nn.Conv2d(3, 16, kernel_size=3, stride=1, padding=1, bias=False)
 
 #partial convolution based padding
