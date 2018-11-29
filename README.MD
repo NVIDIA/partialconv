@@ -6,7 +6,7 @@ This is the PyTorch implementation of partial convolution layer. It can serve as
 
 
 [Partial Convolution based Padding](https://arxiv.org/pdf/1811.11718.pdf) <br>
-[Guilin Liu](https://liuguilin1225.github.io/), [Kevin J. Shih](http://web.engr.illinois.edu/~kjshih2/), [Ting-Chun Wang](https://tcwang0509.github.io/), [Fitsum A. Reda](https://scholar.google.com/citations?user=quZ_qLYAAAAJ&hl=en), [Karan Sapra](http://cecas.clemson.edu/~ksapra/), [Zhiding Yu](https://www.andrew.cmu.edu/user/yzhiding/index.htm), Andrew Tao, [Bryan Catanzaro](http://catanzaro.name/) <br>
+[Guilin Liu](https://liuguilin1225.github.io/), [Kevin J. Shih](http://web.engr.illinois.edu/~kjshih2/), [Ting-Chun Wang](https://tcwang0509.github.io/), [Fitsum A. Reda](https://scholar.google.com/citations?user=quZ_qLYAAAAJ&hl=en), [Karan Sapra](http://cecas.clemson.edu/~ksapra/), [Zhiding Yu](https://chrisding.github.io/), Andrew Tao, [Bryan Catanzaro](http://catanzaro.name/) <br>
 NVIDIA Corporation <br>
 Technical Report (**Technical Report**) 2018
 
