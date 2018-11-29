@@ -1,11 +1,11 @@
 
 # Partial Convolution Layer for Padding and Image Inpainting
-### [YouTube](https://www.youtube.com/watch?v=gg0F5JjKmhA) | [Paper](https://eccv2018.org/openaccess/content_ECCV_2018/papers/Guilin_Liu_Image_Inpainting_for_ECCV_2018_paper.pdf) | [arXiv](https://arxiv.org/abs/1804.07723)
+### [Padding Paper](https://arxiv.org/pdf/1811.11718.pdf) | [Inpainting Paper](https://eccv2018.org/openaccess/content_ECCV_2018/papers/Guilin_Liu_Image_Inpainting_for_ECCV_2018_paper.pdf) | [Inpainting YouTube Video](https://www.youtube.com/watch?v=gg0F5JjKmhA)
 
 This is the PyTorch implementation of partial convolution layer. It can serve as a new padding scheme; it can also be used for image inpainting. <br><br>
 
 
-[Partial Convolution based Padding](https://github.com/NVIDIA/partialconv/) <br>
+[Partial Convolution based Padding](https://arxiv.org/pdf/1811.11718.pdf) <br>
 [Guilin Liu](https://liuguilin1225.github.io/), [Kevin J. Shih](http://web.engr.illinois.edu/~kjshih2/), [Ting-Chun Wang](https://tcwang0509.github.io/), [Fitsum A. Reda](https://scholar.google.com/citations?user=quZ_qLYAAAAJ&hl=en), [Karan Sapra](http://cecas.clemson.edu/~ksapra/), [Zhiding Yu](https://www.andrew.cmu.edu/user/yzhiding/index.htm), Andrew Tao, [Bryan Catanzaro](http://catanzaro.name/) <br>
 NVIDIA Corporation <br>
 Technical Report (**Technical Report**) 2018
@@ -67,7 +67,7 @@ python main.py -a pdvgg16_bn --data_train /path/ILSVRC/Data/CLS-LOC/train --data
 @inproceedings{liu2018partialpadding,
    author    = {Guilin Liu and Kevin J. Shih and Ting-Chun Wang and Fitsum A. Reda and Karan Sapra and Zhiding Yu and Andrew Tao and Bryan Catanzaro},
    title     = {Partial Convolution based Padding},
-   booktitle = {arXiv preprint arXiv:****.*****},   
+   booktitle = {arXiv preprint arXiv:1811.11718},   
    year      = {2018},
 }
 @inproceedings{liu2018partialinpainting,
