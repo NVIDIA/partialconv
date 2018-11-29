@@ -42,14 +42,14 @@ class PartialConv2d(nn.Conv2d):
 
     def forward(self, input, mask=None):
         
-        if mask != None or self.last_size != (input.data.shape[2], input.data.shape[3]):
+        if mask is not None or self.last_size != (input.data.shape[2], input.data.shape[3]):
             self.last_size = (input.data.shape[2], input.data.shape[3])
 
             with torch.no_grad():
                 if self.weight_maskUpdater.type() != input.type():
                     self.weight_maskUpdater = self.weight_maskUpdater.to(input)
 
-                if mask == None:
+                if mask is None:
                     # if mask is not provided, create a mask
                     if self.multi_channel:
                         mask = torch.ones(input.data.shape[0], input.data.shape[1], input.data.shape[2], input.data.shape[3]).to(input)
