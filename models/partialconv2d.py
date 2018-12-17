@@ -67,7 +67,7 @@ class PartialConv2d(nn.Conv2d):
             self.update_mask.to(input)
             self.mask_ratio.to(input)
 
-        raw_out = super(PartialConv2d, self).forward(torch.mul(input, mask))
+        raw_out = super(PartialConv2d, self).forward(torch.mul(input, mask) if mask is not None else input)
 
         if self.bias is not None:
             bias_view = self.bias.view(1, self.out_channels, 1, 1)
