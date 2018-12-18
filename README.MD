@@ -58,7 +58,7 @@ python main.py -a vgg16_bn --data_train /path/ILSVRC/Data/CLS-LOC/train --data_v
 ### vgg16_bn using partial conv based padding
 python main.py -a pdvgg16_bn --data_train /path/ILSVRC/Data/CLS-LOC/train --data_val /path/ILSVRC/Data/CLS-LOC/perfolder_val --batch-size 192 --workers 32 --prefix multigpu_b192 --ckptdirprefix experiment_1/
 
-## Pretrained checkpoints (weights) for VGG1 and ResNet networks with partial convolution based padding:
+## Pretrained checkpoints (weights) for VGG and ResNet networks with partial convolution based padding:
 https://www.dropbox.com/sh/t6flbuoipyzqid8/AACJ8rtrF6V5b9348aG5PIhia?dl=0
 
 
