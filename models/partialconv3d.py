@@ -41,7 +41,7 @@ class PartialConv3d(nn.Conv3d):
         self.mask_ratio = None
 
     def forward(self, input, mask_input=None):
-        assert len(input.shape) == 5 
+        assert len(input.shape) == 5
         if mask_input is not None or self.last_size != tuple(input.shape):
             self.last_size = tuple(input.shape)
 
