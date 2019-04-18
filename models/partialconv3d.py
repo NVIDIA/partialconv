@@ -36,14 +36,14 @@ class PartialConv3d(nn.Conv3d):
             
         self.slide_winsize = self.weight_maskUpdater.shape[1] * self.weight_maskUpdater.shape[2] * self.weight_maskUpdater.shape[3]  * self.weight_maskUpdater.shape[4]
 
-        self.last_size = (None, None, None)
+        self.last_size = (None, None, None, None, None)
         self.update_mask = None
         self.mask_ratio = None
 
     def forward(self, input, mask_input=None):
-        
-        if mask_input is not None or self.last_size != (input.data.shape[2], input.data.shape[3], input.data.shape[4]):
-            self.last_size = (input.data.shape[2], input.data.shape[3], input.data.shape[4])
+        assert len(input.shape) == 5 
+        if mask_input is not None or self.last_size != tuple(input.shape):
+            self.last_size = tuple(input.shape)
 
             with torch.no_grad():
                 if self.weight_maskUpdater.type() != input.type():
