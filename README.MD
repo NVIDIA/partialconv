@@ -44,6 +44,9 @@ nn.Conv2d(3, 16, kernel_size=3, stride=1, padding=1, bias=False)
 
 #partial convolution based padding
 PartialConv2d(3, 16, kernel_size=3, stride=1, padding=1, bias=False)
+
+#partial convolution for inpainting (using multiple channels and updating mask)
+PartialConv2d(3, 16, kernel_size=3, stride=1, padding=1, bias=False, multi_channel=True, return_mask=True)
 ```
 
 ### ResNet50 using zero padding (default padding)
