@@ -71,22 +71,22 @@ PartialConv2d(3, 16, kernel_size=3, stride=1, padding=1, bias=False, multi_chann
 ```
 
 - Gram matrix loss computation: change one-step division to two-step smaller divisions
-  - change from [one-step division](https://github.com/NVIDIA/partialconv/blob/master/models/loss.py#L32)
+-- change from [one-step division](https://github.com/NVIDIA/partialconv/blob/master/models/loss.py#L32)
 ```
   gram = features.bmm(features_t) / (ch * h * w)
 ```
-  - to [two-step smaller divisions](https://github.com/NVIDIA/partialconv/blob/master/models/loss.py#L28)
+-- to [two-step smaller divisions](https://github.com/NVIDIA/partialconv/blob/master/models/loss.py#L28)
 ```
   features = features / (ch * h)
   gram = features.bmm(features_t) / w
 ```
 
 - Small Constant Number: make the small constant number a bit larger (e.g. 1e-8 to 1e-6)
-  - change from [1e-8](https://github.com/NVIDIA/partialconv/blob/master/models/partialconv2d.py#L64)
+-- change from [1e-8](https://github.com/NVIDIA/partialconv/blob/master/models/partialconv2d.py#L64)
 ```
 self.mask_ratio = self.slide_winsize/(self.update_mask + 1e-8)
 ```
-  - to [1e-6](https://github.com/NVIDIA/partialconv/blob/master/models/partialconv2d.py#L63)
+-- to [1e-6](https://github.com/NVIDIA/partialconv/blob/master/models/partialconv2d.py#L63)
 ```
 self.mask_ratio = self.slide_winsize/(self.update_mask + 1e-6)
 ```
