@@ -54,36 +54,39 @@ PartialConv2d(3, 16, kernel_size=3, stride=1, padding=1, bias=False, multi_chann
 ```
 
 ## Mixed Precision Training with AMP
-- typical changes
+- typical changes needed for AMP
 ```
   from apex import amp
+  
   #initializing model and optimizer
   self.model, self.optimizer = amp.initialize(self.model, self.optimizer, opt_level=args.amp_opt_level)
+  
   #initializing vgg loss function/extractor
   self.vgg_feat_loss = amp.initialize(self.vgg_feat_loss, opt_level=args.amp_opt_level)
+  
   #scale loss
   with amp.scale_loss(total_loss, self.g_optimizer) as scaled_loss:
       scaled_loss.backward()
 
 ```
 
-- Gram matrix loss computation: change one step division to two-step smaller divisions
-change from [fp32]()
+- Gram matrix loss computation: change one-step division to two-step smaller divisions
+  - change from [one-step division](https://github.com/NVIDIA/partialconv/blob/master/models/loss.py#L32)
 ```
   gram = features.bmm(features_t) / (ch * h * w)
 ```
-to
+  - to [two-step smaller divisions](https://github.com/NVIDIA/partialconv/blob/master/models/loss.py#L28)
 ```
   features = features / (ch * h)
   gram = features.bmm(features_t) / w
 ```
 
 - Small Constant Number: make the small constant number a bit larger (e.g. 1e-8 to 1e-6)
-change from [fp32]()
+  - change from [1e-8](https://github.com/NVIDIA/partialconv/blob/master/models/partialconv2d.py#L64)
 ```
 self.mask_ratio = self.slide_winsize/(self.update_mask + 1e-8)
 ```
-to
+  - to [1e-6](https://github.com/NVIDIA/partialconv/blob/master/models/partialconv2d.py#L63)
 ```
 self.mask_ratio = self.slide_winsize/(self.update_mask + 1e-6)
 ```
