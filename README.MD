@@ -38,32 +38,82 @@ Installation can be found: https://github.com/pytorch/examples/tree/master/image
 
 ## Usage:
 
+- using partial conv for padding
 ```
 #typical convolution layer with zero padding
 nn.Conv2d(3, 16, kernel_size=3, stride=1, padding=1, bias=False)
 
 #partial convolution based padding
 PartialConv2d(3, 16, kernel_size=3, stride=1, padding=1, bias=False)
+```
 
+- using partial conv for image inpainting, set both `multi_channel` and `return_mask` to be `True`
+```
 #partial convolution for inpainting (using multiple channels and updating mask)
 PartialConv2d(3, 16, kernel_size=3, stride=1, padding=1, bias=False, multi_channel=True, return_mask=True)
 ```
 
-### ResNet50 using zero padding (default padding)
+## Mixed Precision Training with AMP
+- typical changes
+```
+  from apex import amp
+  #initializing model and optimizer
+  self.model, self.optimizer = amp.initialize(self.model, self.optimizer, opt_level=args.amp_opt_level)
+  #initializing vgg loss function/extractor
+  self.vgg_feat_loss = amp.initialize(self.vgg_feat_loss, opt_level=args.amp_opt_level)
+  #scale loss
+  with amp.scale_loss(total_loss, self.g_optimizer) as scaled_loss:
+      scaled_loss.backward()
+
+```
+
+- Gram matrix loss computation: change one step division to two-step smaller divisions
+change from [fp32]()
+```
+  gram = features.bmm(features_t) / (ch * h * w)
+```
+to
+```
+  features = features / (ch * h)
+  gram = features.bmm(features_t) / w
+```
+
+- Small Constant Number: make the small constant number a bit larger (e.g. 1e-8 to 1e-6)
+change from [fp32]()
+```
+self.mask_ratio = self.slide_winsize/(self.update_mask + 1e-8)
+```
+to
+```
+self.mask_ratio = self.slide_winsize/(self.update_mask + 1e-6)
+```
+
+
+## Usage of partial conv based padding to train ImageNet
+- ResNet50 using zero padding (default padding)
+```
 python main.py -a resnet50 --data_train /path/ILSVRC/Data/CLS-LOC/train --data_val /path/ILSVRC/Data/CLS-LOC/perfolder_val --batch-size 192 --workers 32 --prefix multigpu_b192 --ckptdirprefix experiment_1/
+```
 
-### ResNet50 using partial conv based padding
+- ResNet50 using partial conv based padding
+```
 python main.py -a pdresnet50 --data_train /path/ILSVRC/Data/CLS-LOC/train --data_val /path/ILSVRC/Data/CLS-LOC/perfolder_val --batch-size 192 --workers 32 --prefix multigpu_b192 --ckptdirprefix experiment_1/
+```
 
-### vgg16_bn using zero padding (default padding)
+- vgg16_bn using zero padding (default padding)
+```
 python main.py -a vgg16_bn --data_train /path/ILSVRC/Data/CLS-LOC/train --data_val /path/ILSVRC/Data/CLS-LOC/perfolder_val --batch-size 192 --workers 32 --prefix multigpu_b192 --ckptdirprefix experiment_1/
+```
 
-### vgg16_bn using partial conv based padding
+- vgg16_bn using partial conv based padding
+```
 python main.py -a pdvgg16_bn --data_train /path/ILSVRC/Data/CLS-LOC/train --data_val /path/ILSVRC/Data/CLS-LOC/perfolder_val --batch-size 192 --workers 32 --prefix multigpu_b192 --ckptdirprefix experiment_1/
+```
 
-## Pretrained checkpoints (weights) for VGG and ResNet networks with partial convolution based padding:
+### Pretrained checkpoints (weights) for VGG and ResNet networks with partial convolution based padding:
+```
 https://www.dropbox.com/sh/t6flbuoipyzqid8/AACJ8rtrF6V5b9348aG5PIhia?dl=0
-
+```
 
 
 ## Citation
