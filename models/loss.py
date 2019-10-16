@@ -1,8 +1,6 @@
 import torch
 import torch.nn as nn
 
-from .utils import center_cropper, random_cropper
-
 import time
 """VGG Losses"""
 import torch
