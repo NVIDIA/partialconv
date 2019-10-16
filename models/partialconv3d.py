@@ -40,23 +40,23 @@ class PartialConv3d(nn.Conv3d):
         self.update_mask = None
         self.mask_ratio = None
 
-    def forward(self, input, mask_input=None):
+    def forward(self, input, mask_in=None):
         assert len(input.shape) == 5
-        if mask_input is not None or self.last_size != tuple(input.shape):
+        if mask_in is not None or self.last_size != tuple(input.shape):
             self.last_size = tuple(input.shape)
 
             with torch.no_grad():
                 if self.weight_maskUpdater.type() != input.type():
                     self.weight_maskUpdater = self.weight_maskUpdater.to(input)
 
-                if mask_input is None:
+                if mask_in is None:
                     # if mask is not provided, create a mask
                     if self.multi_channel:
                         mask = torch.ones(input.data.shape[0], input.data.shape[1], input.data.shape[2], input.data.shape[3], input.data.shape[4]).to(input)
                     else:
                         mask = torch.ones(1, 1, input.data.shape[2], input.data.shape[3], input.data.shape[4]).to(input)
                 else:
-                    mask = mask_input
+                    mask = mask_in
                         
                 self.update_mask = F.conv3d(mask, self.weight_maskUpdater, bias=None, stride=self.stride, padding=self.padding, dilation=self.dilation, groups=1)
 
@@ -69,7 +69,7 @@ class PartialConv3d(nn.Conv3d):
         #     self.update_mask.to(input)
         #     self.mask_ratio.to(input)
 
-        raw_out = super(PartialConv3d, self).forward(torch.mul(input, mask_input) if mask_input is not None else input)
+        raw_out = super(PartialConv3d, self).forward(torch.mul(input, mask_in) if mask_in is not None else input)
 
         if self.bias is not None:
             bias_view = self.bias.view(1, self.out_channels, 1, 1, 1)
