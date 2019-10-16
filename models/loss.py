@@ -1,8 +1,6 @@
-import torch
-import torch.nn as nn
 
-import time
 """VGG Losses"""
+
 import torch
 import torch.nn as nn
 
