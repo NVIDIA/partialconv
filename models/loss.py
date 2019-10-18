@@ -1,4 +1,10 @@
-
+###############################################################################
+# BSD 3-Clause License
+#
+# Copyright (c) 2019, NVIDIA CORPORATION. All rights reserved.
+#
+# Author & Contact: Guilin Liu (guilinl@nvidia.com)
+###############################################################################
 """VGG Losses"""
 
 import torch
