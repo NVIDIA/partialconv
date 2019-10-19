@@ -1,6 +1,6 @@
 
 # Partial Convolution Layer for Padding and Image Inpainting
-### [Padding Paper](https://arxiv.org/pdf/1811.11718.pdf) | [Inpainting Paper](https://arxiv.org/abs/1804.07723) | [Inpainting YouTube Video](https://www.youtube.com/watch?v=gg0F5JjKmhA)
+### [Padding Paper](https://arxiv.org/pdf/1811.11718.pdf) | [Inpainting Paper](https://arxiv.org/abs/1804.07723) | [Inpainting YouTube Video](https://www.youtube.com/watch?v=gg0F5JjKmhA) | [Online Inpainting Demo](https://www.nvidia.com/research/inpainting/)
 
 This is the PyTorch implementation of partial convolution layer. It can serve as a new padding scheme; it can also be used for image inpainting. <br><br>
 
