@@ -64,12 +64,12 @@ PartialConv2d(3, 16, kernel_size=3, stride=1, padding=1, bias=False, multi_chann
 ```
 
 - Required change #2 (Gram Matrix Loss): in Gram matrix loss computation, change one-step division to two-step smaller divisions
-  - change from [one-step division](https://github.com/NVIDIA/partialconv/blob/master/models/loss.py#L32): `gram = features.bmm(features_t) / (ch * h * w)
+  - change from [one-step division](https://github.com/NVIDIA/partialconv/blob/master/models/loss.py#L38): `gram = features.bmm(features_t) / (ch * h * w)
 `  
-  - to [two-step smaller divisions](https://github.com/NVIDIA/partialconv/blob/master/models/loss.py#L28):
+  - to [two-step smaller divisions](https://github.com/NVIDIA/partialconv/blob/master/models/loss.py#L31):
 ```
-  features = features / (ch * h)
-  gram = features.bmm(features_t) / w
+    input = torch.zeros(b, ch, ch).type(features.type())
+    gram = torch.baddbmm(input, features, features_t, beta=0, alpha=1./(ch * h * w), out=None)
 ```
 
 - Required change #3 (Small Constant Number): make the small constant number a bit larger (e.g. 1e-8 to 1e-6)
