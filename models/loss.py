@@ -25,10 +25,14 @@ def gram_matrix(input_tensor):
     (b, ch, h, w) = input_tensor.size()
     features = input_tensor.view(b, ch, w * h)
     features_t = features.transpose(1, 2)
-
-    # for mixed precision training
-    features = features / (ch * h)
-    gram = features.bmm(features_t) / w
+    
+    # more efficient and formal way to avoid underflow for mixed precision training
+    input = torch.zeros(b, ch, ch).type(features.type())
+    gram = torch.baddbmm(input, features, features_t, beta=0, alpha=1./(ch * h * w), out=None)
+    
+    # naive way to avoid underflow for mixed precision training
+    # features = features / (ch * h)
+    # gram = features.bmm(features_t) / w
 
     # for fp32 training, it is also safe to use the following:
     # gram = features.bmm(features_t) / (ch * h * w)
