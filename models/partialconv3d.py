@@ -74,8 +74,7 @@ class PartialConv3d(nn.Conv3d):
         if self.bias is not None:
             bias_view = self.bias.view(1, self.out_channels, 1, 1, 1)
             output = torch.mul(raw_out - bias_view, self.mask_ratio) + bias_view
-            if mask_input is not None:
-                output = torch.mul(output, self.update_mask)
+            output = torch.mul(output, self.update_mask)
         else:
             output = torch.mul(raw_out, self.mask_ratio)
 
