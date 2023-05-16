@@ -1,0 +1,14 @@
+# beijing geometry parameters
+beijingAngleNum: 1080
+beijingPlanes: 21
+beijingSubDetectorSize:
+  - 80
+  - 144
+beijingVolumeSize:
+  - 256
+  - 256
+  - 64
+beijingParameterRoot: /media/wyk/wyk/beijing/projVecReal.mat
+#beijingParameterRoot: /media/wyk/wyk/beijing/projVecSparse.mat
+beijingSID: 708
+beijingSDD: 1143
